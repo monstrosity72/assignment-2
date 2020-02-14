@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html style="background-color: white">
+<head >
+	 <meta charset="UTF-8"> 
+	<title >Assignment 2</title>
+
+	<style type="text/css">
+
+body{
+
+	margin:0px;
+	padding:0px;
+
+background-color:#FFFFF0;
+}
+
+
+#quoteDiv{
+
+	border:10px solid black;
+	padding:50px;
+	margin: 50px;
+}
+.button{
+	padding:10px;
+	margin: 10px;
+	border:4px solid black;
+	color: white;
+	float: right;
+}
+
+#converterbox{
+	padding:10px;
+	margin: 10px;
+	border:4px solid black;
+	color: white;
+	float: right
+}
+
+	</style>
+
+</head>
+<body>
+<fieldset style="background-color: #fbde44ff;font-size: 30px">
+	<center><h2 style="color: #c72c41 ;width: 500px;">Hero Converter</h2>
+<input id="input" style="size: 40px"  type="text">
+<select id="convert" style="size: 30px">
+<option style="size: 40px" value="poundstokg">lb to Kg</option>
+<option value="kgtopounds">kg to lb</option>
+</select>
+<button  onclick="convert()" >Calculate</button>
+<span id="answer"></span>
+</center>
+</fieldset>
+
+<script type="text/javascript">
+
+function convert() {
+   var input = document.getElementById("input");
+   value = parseInt(input.value);
+
+   var conversion = document.getElementById("convert");
+   if (conversion.value == "kgtopounds") {
+      value *= 2.2046;
+   } if (conversion.value == "poundstokg"){
+      value *= 0.4536;
+   }
+
+   var answer = document.getElementById("answer");
+   answer.innerHTML = value;
+
+}
+</script>
+
+
+<script type="text/javascript">
+	function calculate() {
+  var values = document.getElementById('box1').value.split(/,/g);
+  var sum = values.reduce(function(a,b) { return parseInt(a) + parseInt(b); });
+  document.querySelector('#max').innerHTML = values.max();
+  document.querySelector('#min').innerHTML = values.min();
+  document.querySelector('#sum').innerHTML = sum;
+  document.querySelector('#avg').innerHTML = sum / values.length;
+  document.querySelector('#reverse').innerHTML = values.reverse().join(',');
+}
+
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+};
+
+Array.prototype.min = function() {
+  return Math.min.apply(null, this);
+};
+</script>
+
+	<fieldset style="background-color: #003152;font-size: 30px ;color: #4f9783">
+	<center><h2>Calculate Max, Min, Sum, Average and Reverse Order of the given numbers</h2></center>
+
+    <table width="47%" border="0" align="center">
+      <tr>
+        <td width="30%">Input Series of Number:</td>
+        <td width="29%"><input name="box1" type="text" id="box1" value="12,12,22,9,1,20" /></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Max :</td>
+        <td><div id="max"> </div></td>
+      </tr>
+      <tr>
+        <td>Min :</td>
+        <td><div id="min"> </div></td>
+      </tr>
+      <tr>
+        <td>Sum  :</td>
+        <td><div id="sum"> </div></td>
+      </tr>
+      <tr>
+        <td>Average :</td>
+        <td><div id="avg"> </div></td>
+      </tr>
+      <tr>
+        <td>Reverse Order :</td>
+        <td><div id="reverse"> </div></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td></td>
+      </tr>
+    </table>
+    <center>
+	<button onclick="calculate()">Calculate</button>
+	</center>
+	</fieldset>
+
+
+
+	 <div id="magic" style="background-color: #00A695; padding: 20px" align="center">
+	 	<h1 style="color: #80ffff">Magic Box!</h1>
+	    <textarea id="text"  rows="15" cols="70" style="background-color: #d2ffdf">
+Sample Item 1
+Sample Item 2
+Sample Item 3
+Sample Item 4
+
+Sample Item 5
+Sample Item 6
+
+Sample Item 7
+	        </textarea>
+			<br>
+			<br>
+			<button onclick="document.getElementById('text').value = ''">Clear It</button>
+			<button onclick="caps(document.getElementById('text').value)">Capitalize</button>
+			<button onclick="sort(document.getElementById('text').value)">Sort</button>
+			<button onclick="rev(document.getElementById('text').value)">Reverse</button>
+			<button onclick="blankRmv()">Strip Blank</button>
+			<button onclick="addnumber(document.getElementById('text').value)">Add Number</button>
+			<button onclick="shuffle(document.getElementById('text').value)">Shuffle</button>
+
+
+			<script type="text/javascript">
+
+			function caps(val){
+						var p= val.toUpperCase();
+						document.getElementById("text").value=p;
+
+				}
+
+				function rev(text){
+		              var splitString = text.split("");
+		              var reverseArray = splitString.reverse();
+		              var joinArray = reverseArray.join("");
+		              document.getElementById("text").value = joinArray;
+		         }
+
+						 function blankRmv() {
+			     var output = document.getElementById("text").value;
+			     output = output.replace(/\s/g, "")
+			     document.getElementById("text").value = output;
+			 }
+
+				function shuffle(val){
+						var splitString = val.split("\n");
+
+						var newArray=[];
+						var len=splitString.length;
+						for(var i = 0; i<len; i++){
+								newArray[i]=splitString[Math.floor(Math.random()*len)];
+						}
+						document.getElementById("text").value= newArray;
+				}
+
+				function addnumber(val){
+						var split = val.split("\n");
+						var newArray=[];
+						for(var i=0;i<split.length;i++){
+								newArray[i]=(i+1)+ split[i] ;
+
+						}
+						document.getElementById("text").value= newArray;
+				}
+
+				function sort(val){
+						 var split = val.split("\n");
+						split.sort();
+
+						document.getElementById("text").value= split;
+				}
+
+		</script>
+	    </div>
+
+
+
+
+        <div id="quoteDiv">
+		<button  onclick="newQuote()" > Generate Quote </button>
+		<script type="text/javascript">
+
+	
+		var quotes = ['Live as if you were to die tomorrow. Learn as if you were to live forever.&minus;Mahatma Gandhi',
+		 'That which does not kill us makes us stronger.&minus;Friedrich Nietzsche',
+		'There are some things you learn best in calm, and some in storm.&minus;Willa Cather',
+		'I believe that a simple and unassuming manner of life is best for everyone, best both for the body and the mind.&minus;Albert Einstein',
+		'Logic will get you from A to B. Imagination will take you everywhere.&minus;Albert Einstein',
+		'You have to accept whatever comes and the only important thing is that you meet it with courage and with the best that you have to give.&minus;Eleanor Roosevelt',
+		'I have found the best way to give advice to your children is to find out what they want and then advise them to do it.&minus;Harry S Truman',
+		'Our greatest glory is not in never falling, but in rising every time we fall.&minus;Confucius',
+		'Anger is an acid that can do more harm to the vessel in which it is stored than to anything on which it is poured.&minus;Mark Twain',
+		'Character is like a tree and reputation like a shadow. The shadow is what we think of it; the tree is the real thing.&minus;Abraham Lincoln',
+		'The oldest and strongest emotion of mankind is fear, and the oldest and strongest kind of fear is fear of the unknown.&minus;H. P. Lovecraft',
+		'If you want to see the true measure of a man, watch how he treats his inferiors, not his equals.&minus;J. K. Rowling',
+		'We are shaped by our thoughts; we become what we think. When the mind is pure, joy follows like a shadow that never leaves.&minus;Buddha',
+		'Quality is not an act, it is a habit.&minus;Aristotle']
+
+			   
+	    function newQuote(){
+		var randomNumber=Math.floor(Math.random()*(quotes.length));
+		document.getElementById("quoteDiv").innerHTML=quotes[randomNumber];
+
+	 }
+
+		</script>
+		</div>
+	 <div id="buttonDiv">
+	        <button class="button" onclick="btnRed(); btnRed1(); btnred1(); btnreD1();btnrED1();" style="background-color: #ff3822;color: black;color: white;font-size: medium"></button>
+	        <button class="button" onclick="btnGreen();btnGreen1();btngreen1();btngreeN1();btngreEN1();" style="background-color: green;color:black;font-size: medium"></button>
+	        <button class="button" onclick="btnBlue();btnBlue1();btnblue1(); btnbluE1(); btnblUE1();" style="background-color: blue;color: Black;font-size: medium"></button>
+	        <button class="button" onclick="btnYellow();btnYellow1();btnyellow1(); btnyelloW1(); btnyellOW1();" style="background-color: yellow;color:black;font-size: medium"></button>
+
+  <script type="text/javascript">
+	       function btnRed() {document.getElementById("quoteDiv").style.backgroundColor="#c23b22";}
+	       function btnGreen() {document.getElementById("quoteDiv").style.backgroundColor="#358856";}
+	       function btnBlue() {document.getElementById("quoteDiv").style.backgroundColor="#349ce4";}
+	       function btnYellow() {document.getElementById("quoteDiv").style.backgroundColor="#fbde44ff";}
+	       </script>
+
+				 <script type="text/javascript">
+  function btnRed1() {document.getElementById("quoteDiv").style.borderColor="#581845";}
+	function btnGreen1() {document.getElementById("quoteDiv").style.borderColor="#25523B";}
+	function btnBlue1() {document.getElementById("quoteDiv").style.borderColor="#002c2f";}
+	function btnYellow1() {document.getElementById("quoteDiv").style.borderColor="#28334aff";}
+				 </script>
+
+
+
+				 <script type="text/javascript">
+  function btnred1() {document.getElementById("quoteDiv").style.color="#581845";}
+	function btngreen1() {document.getElementById("quoteDiv").style.color="yellow";}
+	function btnblue1() {document.getElementById("quoteDiv").style.color="black";}
+	function btnyellow1() {document.getElementById("quoteDiv").style.color="#f65058ff";}
+				 </script>
+
+
+				<script type="text/javascript">
+ function btnreD1()
+ {
+	 document.getElementById("quoteDiv").style.fontSize="25px";
+ }
+function btngreeN1() {document.getElementById("quoteDiv").style.fontSize="20px";}
+function btnbluE1() {document.getElementById("quoteDiv").style.fontSize="30px";}
+function btnyelloW1() {document.getElementById("quoteDiv").style.fontSize="40px";}
+			 </script>
+
+
+			 <script type="text/javascript">
+ function btnrED1() {document.getElementById("quoteDiv").style.fontfamily="Times New Roman, Times, serif";}
+function btngreEN1() {document.getElementById("quoteDiv").style.fontfamily="Arial, Helvetica, sans-serif";}
+function btnblUE1() {document.getElementById("quoteDiv").style.fontfamily="Impact,Charcoal,sans-serif"; }
+function btnyellOW1() {document.getElementById("quoteDiv").style.fontfamily="Arial Black, Gadget, sans-serif";}
+			</script>
+	        </div>
+	</footer>
+</body>
+</html>
